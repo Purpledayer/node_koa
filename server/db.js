@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/vue-login');
+mongoose.connect('mongodb://localhost/test',{ useNewUrlParser: true });
 
 let db = mongoose.connection;
 // 防止Mongoose: mpromise 错误
@@ -20,9 +20,20 @@ const userSchema = mongoose.Schema({
     token: String,
     create_time: Date
 });
+
+const InfoListSchema = mongoose.Schema({
+    goodsTitle:String,
+    id:Number,
+    plan:Number,
+    taskName:String,
+    status:String,
+    statusInfo:String,
+});
+
 //根据schema生成model
 const model = {
-    User: mongoose.model('User', userSchema)
+    User: mongoose.model('User', userSchema),
+    InfoList:mongoose.model('InfoList',InfoListSchema)
 };
 
 module.exports = model;
